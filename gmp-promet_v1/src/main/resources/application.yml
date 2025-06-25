@@ -2,20 +2,22 @@ server:
   port: 8080
 
 management:
-  metrics:
-    enable:
-      all: false
-      custom.hello.count: true
-    tags:
-      cluster: cluster-1
-      instance: gmp-promet-helm-chart-5dd7985569-knqg9
-      job: spring-boot-app
-      location: us-central1-c      # or your zone/region
-      namespace: namespace2         # or your GKE namespace
   endpoints:
     web:
       exposure:
         include: health, info, metrics, prometheus
+
+  endpoint:
+    health:
+      show-details: always
+
+  metrics:
+    enable:
+      all: false
+      custom.hello.count: true  # 👈 Enable your custom metric
+    tags:
+      status: ok                # 👈 Metric label (optional)
+
   stackdriver:
     metrics:
       export:
@@ -23,4 +25,9 @@ management:
         project-id: phonic-operand-457319-e2
         resource-type: "prometheus_target"
         metric-type-prefix: "prometheus.googleapis.com/"
-
+        resource-labels:
+          cluster: cluster-1
+          instance: ${HOSTNAME:unknown-instance}  # Pod name usually auto-set as HOSTNAME
+          job: spring-boot-app
+          location: us-central1-c
+          namespace: namespace2
