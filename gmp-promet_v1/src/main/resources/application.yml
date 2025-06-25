@@ -6,6 +6,12 @@ management:
     enable:
       all: false
       custom.hello.count: true
+    tags:
+      cluster: cluster-1
+      instance: gmp-promet-helm-chart-5dd7985569-knqg9
+      job: spring-boot-app
+      location: us-central1-c      # or your zone/region
+      namespace: namespace2         # or your GKE namespace
   endpoints:
     web:
       exposure:
@@ -14,10 +20,7 @@ management:
     metrics:
       export:
         enabled: true
-        project-id: phonic-operand-457319-e2  # 👈 required
-        resource-type: "prometheus_target"    # or "k8s_container"
+        project-id: phonic-operand-457319-e2
+        resource-type: "prometheus_target"
         metric-type-prefix: "prometheus.googleapis.com/"
 
-  endpoint:
-    health:
-      show-details: always
