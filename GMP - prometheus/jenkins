@@ -33,7 +33,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('spring-boot-soap_v1') {
+                dir('GMP - prometheus') {
                     sh 'mvn clean install'
                 }
             }
@@ -72,7 +72,7 @@ pipeline {
         /*
         stage('Deploy to Kubernetes') {
             steps {
-                dir('spring-boot-soap_v1') {
+                dir('GMP - prometheus') {
                     withCredentials([file(credentialsId: "${KUBECONFIG_CREDENTIAL_ID}", variable: 'KUBECONFIG')]) {
                         sh '''
                             echo "Current directory contents:"
@@ -90,7 +90,7 @@ pipeline {
         /*
         stage('Helm Deploy') {
             steps {
-                dir('spring-boot-soap_v1') {
+                dir('GMP - prometheus') {
                     withCredentials([file(credentialsId: "${KUBECONFIG_CREDENTIAL_ID}", variable: 'KUBECONFIG')]) {
                         sh '''
                             helm upgrade --install ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
@@ -128,7 +128,7 @@ pipeline {
 
         stage('Deploy with Helm') {
             steps {
-                dir('spring-boot-soap_v1') {
+                dir('GMP - prometheus') {
                     sh '''
 
                         # Create the namespace if it doesn't exist
