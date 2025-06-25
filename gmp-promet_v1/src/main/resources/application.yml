@@ -5,6 +5,7 @@ management:
   metrics:
     enable:
       all: false
+      custom.hello.count: true
   endpoints:
     web:
       exposure:
