@@ -33,7 +33,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('GMP - prometheus') {
+                dir('gmp-promet_v1') {
                     sh 'mvn clean install'
                 }
             }
