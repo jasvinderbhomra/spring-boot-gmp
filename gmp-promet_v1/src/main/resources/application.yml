@@ -12,7 +12,7 @@ management:
         enabled: true
         project-id: phonic-operand-457319-e2  # 👈 required
         resource-type: "gce_instance"    # or "k8s_container"
-        metric-type-prefix: "prometheus.googleapis.com/myapp/"
+        metric-type-prefix: "prometheus.googleapis.com/"
 
   endpoint:
     health:
