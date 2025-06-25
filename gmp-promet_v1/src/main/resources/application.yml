@@ -6,20 +6,13 @@ management:
     web:
       exposure:
         include: health, info, metrics, prometheus
-
-  metrics:
-    export:
-      stackdriver:
+  stackdriver:
+    metrics:
+      export:
         enabled: true
-        step: 1m
-        project-id: phonic-operand-457319-e2
-        resource-type: "gce_instance"  # Or k8s_container
+        project-id: phonic-operand-457319-e2  # 👈 required
+        resource-type: "gce_instance"    # or "k8s_container"
         metric-type-prefix: "prometheus.googleapis.com/myapp/"
-    distribution:
-      percentiles-histogram:
-        http.server.requests: true
-    tags:
-      application: metrics-demo
 
   endpoint:
     health:
