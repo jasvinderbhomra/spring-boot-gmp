@@ -72,7 +72,7 @@ pipeline {
         /*
         stage('Deploy to Kubernetes') {
             steps {
-                dir('GMP - prometheus') {
+                dir('gmp-promet_v1') {
                     withCredentials([file(credentialsId: "${KUBECONFIG_CREDENTIAL_ID}", variable: 'KUBECONFIG')]) {
                         sh '''
                             echo "Current directory contents:"
@@ -90,7 +90,7 @@ pipeline {
         /*
         stage('Helm Deploy') {
             steps {
-                dir('GMP - prometheus') {
+                dir('gmp-promet_v1') {
                     withCredentials([file(credentialsId: "${KUBECONFIG_CREDENTIAL_ID}", variable: 'KUBECONFIG')]) {
                         sh '''
                             helm upgrade --install ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
@@ -128,7 +128,7 @@ pipeline {
 
         stage('Deploy with Helm') {
             steps {
-                dir('GMP - prometheus') {
+                dir('gmp-promet_v1') {
                     sh '''
 
                         # Create the namespace if it doesn't exist
