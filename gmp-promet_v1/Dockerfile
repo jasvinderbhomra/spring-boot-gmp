@@ -1,14 +1,11 @@
-# Use a base image with OpenJDK (for Spring Boot applications)
-FROM openjdk:8-jre-slim
+# Use Java 17 base image
+FROM eclipse-temurin:17-jre-alpine
 
-# Set the working directory inside the container
+# Set app directory
 WORKDIR /app
 
-# Copy the JAR file from the target folder (adjust path if needed)
-COPY target/gmp-promet_v1-0.0.1-snapshot.jar /app/app.jar
+# Copy jar from host
+COPY target/gmp-promet_v1-0.0.1-snapshot.jar app.jar
 
-# Expose the port the app will run on
-EXPOSE 8081
-
-# Command to run the JAR file
-ENTRYPOINT ["java", "-jar", "app.jar", "com.gmp.boot"]
+# Run the Spring Boot app
+ENTRYPOINT ["java", "-jar", "app.jar"]
