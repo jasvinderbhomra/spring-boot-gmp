@@ -52,7 +52,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    def image = docker.build("${DOCKER_IMAGE}:${IMAGE_TAG}", 'gmp-promet_v1')
+                    def image = docker.build("${DOCKER_IMAGE}:${IMAGE_TAG}", 'GMP - prometheus')
                     echo "Image built: ${image}"
                 }
             }
