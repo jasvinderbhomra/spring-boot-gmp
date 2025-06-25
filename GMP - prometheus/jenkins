@@ -13,7 +13,7 @@ pipeline {
         DOCKER_CREDENTIALS_ID = 'docker-hub-token'
         IMAGE_TAG = "build-${env.BUILD_NUMBER}"
         HELM_CHART_PATH = "helm-chart"
-        HELM_RELEASE_NAME = 'spring-boot-soap'
+        HELM_RELEASE_NAME = 'gmp-promet'
         APP_NAME = 'springboot-app'
         GOOGLE_APPLICATION_CREDENTIALS = credentials('gcp-service-account-key-cluster1')
         PROJECT_ID = 'phonic-operand-457319-e2'
@@ -52,7 +52,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    def image = docker.build("${DOCKER_IMAGE}:${IMAGE_TAG}", 'spring-boot-soap_v1')
+                    def image = docker.build("${DOCKER_IMAGE}:${IMAGE_TAG}", 'gmp-promet_v1')
                     echo "Image built: ${image}"
                 }
             }
