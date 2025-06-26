@@ -17,9 +17,9 @@ class SampleController {
 
     @PostMapping("/hello")
     public String hello(@RequestBody Request requestBody) {
-        if (requestBody.getRequestedLowCostCarriers() != null) {
-            for (String carrier : requestBody.getRequestedLowCostCarriers()) {
-                registry.counter("custom.requested_low_cost_carrier_total", "carrier", carrier).increment();
+        if (requestBody.getrLCC() != null) {
+            for (String c : requestBody.getrLCC()) {
+                registry.counter("custom.requested_lcc_total", "lcc", c).increment();
             }
         }
         //registry.counter("custom.hello.count", "status", "ok").increment();
