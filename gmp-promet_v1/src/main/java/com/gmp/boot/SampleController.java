@@ -22,7 +22,7 @@ class SampleController {
                 registry.counter("custom.requested_low_cost_carrier_total", "carrier", carrier).increment();
             }
         }
-        registry.counter("custom.hello.count", "status", "ok").increment();
+        //registry.counter("custom.hello.count", "status", "ok").increment();
         return "Hello, world!";
     }
 }
