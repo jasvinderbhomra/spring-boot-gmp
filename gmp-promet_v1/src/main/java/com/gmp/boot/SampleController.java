@@ -1,7 +1,7 @@
 package com.gmp.boot;
 
 import io.micrometer.core.instrument.MeterRegistry;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +15,7 @@ class SampleController {
         this.registry = registry;
     }
 
-    @GetMapping("/hello")
+    @PostMapping("/hello")
     public String hello(@RequestBody Request requestBody) {
         if (requestBody.getRequestedLowCostCarriers() != null) {
             for (String carrier : requestBody.getRequestedLowCostCarriers()) {
