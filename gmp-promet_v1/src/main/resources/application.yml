@@ -15,6 +15,7 @@ management:
     enable:
       all: false
       custom.hello.count: true  # 👈 Enable your custom metric
+      custom.requested_low_cost_carrier_total: true
     tags:
       status: ok                # 👈 Metric label (optional)
 
