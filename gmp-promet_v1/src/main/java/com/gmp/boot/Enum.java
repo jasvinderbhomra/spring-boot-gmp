@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Enum {
-    LOW_COST_RESERVATIONS("Low Cost Reservations"),
-    NDC_ORDER("NDC Order");
+    LCR("LCR"),
+    ORDER("Order");
 
     private String value;
 
