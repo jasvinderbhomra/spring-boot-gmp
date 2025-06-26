@@ -9,14 +9,14 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-@JsonPropertyOrder({"id", "synchronizationScope", "requestedLowCostCarriers"})
+@JsonPropertyOrder({"id", "sScope", "rLCC"})
 public class Request {
     public static final String JSON_PROPERTY_ID = "id";
     private String id;
-    public static final String JSON_PROPERTY_SYNCHRONIZATION_SCOPE = "synchronizationScope";
-    private List<Enum> synchronizationScope;
-    public static final String JSON_PROPERTY_REQUESTED_LOW_COST_CARRIERS = "requestedLowCostCarriers";
-    private List<String> requestedLowCostCarriers;
+    public static final String JSON_PROPERTY_SYNCHRONIZATION_SCOPE = "sScope";
+    private List<Enum> sScope;
+    public static final String JSON_PROPERTY_REQUESTED_LOW_COST_CARRIERS = "rLCC";
+    private List<String> rLCC;
 
     public Request() {
     }
@@ -39,58 +39,58 @@ public class Request {
         this.id = id;
     }
 
-    public Request synchronizationScope(List<Enum> synchronizationScope) {
-        this.synchronizationScope = synchronizationScope;
+    public Request sScope(List<Enum> sScope) {
+        this.sScope = sScope;
         return this;
     }
 
-    public Request addSynchronizationScopeItem(Enum synchronizationScopeItem) {
-        if (this.synchronizationScope == null) {
-            this.synchronizationScope = new ArrayList();
+    public Request addsScopeItem(Enum sScopeItem) {
+        if (this.sScope == null) {
+            this.sScope = new ArrayList();
         }
 
-        this.synchronizationScope.add(synchronizationScopeItem);
+        this.sScope.add(sScopeItem);
         return this;
     }
 
     @Nullable
-    @JsonProperty("synchronizationScope")
+    @JsonProperty("sScope")
     @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
-    public List<Enum> getSynchronizationScope() {
-        return this.synchronizationScope;
+    public List<Enum> getsScope() {
+        return this.sScope;
     }
 
-    @JsonProperty("synchronizationScope")
+    @JsonProperty("sScope")
     @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
-    public void setSynchronizationScope(List<Enum> synchronizationScope) {
-        this.synchronizationScope = synchronizationScope;
+    public void setsScope(List<Enum> sScope) {
+        this.sScope = sScope;
     }
 
-    public Request requestedLowCostCarriers(List<String> requestedLowCostCarriers) {
-        this.requestedLowCostCarriers = requestedLowCostCarriers;
+    public Request rLCC(List<String> rLCC) {
+        this.rLCC = rLCC;
         return this;
     }
 
-    public Request addRequestedLowCostCarriersItem(String requestedLowCostCarriersItem) {
-        if (this.requestedLowCostCarriers == null) {
-            this.requestedLowCostCarriers = new ArrayList();
+    public Request addrLCCItem(String rLCCItem) {
+        if (this.rLCC == null) {
+            this.rLCC = new ArrayList();
         }
 
-        this.requestedLowCostCarriers.add(requestedLowCostCarriersItem);
+        this.rLCC.add(rLCCItem);
         return this;
     }
 
     @Nullable
-    @JsonProperty("requestedLowCostCarriers")
+    @JsonProperty("rLCC")
     @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
-    public List<String> getRequestedLowCostCarriers() {
-        return this.requestedLowCostCarriers;
+    public List<String> getrLCC() {
+        return this.rLCC;
     }
 
-    @JsonProperty("requestedLowCostCarriers")
+    @JsonProperty("rLCC")
     @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
-    public void setRequestedLowCostCarriers(List<String> requestedLowCostCarriers) {
-        this.requestedLowCostCarriers = requestedLowCostCarriers;
+    public void setrLCC(List<String> rLCC) {
+        this.rLCC = rLCC;
     }
 
     public boolean equals(Object o) {
@@ -98,24 +98,24 @@ public class Request {
             return true;
         } else if (o != null && this.getClass() == o.getClass()) {
             Request orderSynchronizationRequest = (Request) o;
-            return Objects.equals(this.id, orderSynchronizationRequest.id) && Objects.equals(this.synchronizationScope,
-                    orderSynchronizationRequest.synchronizationScope) && Objects.equals(this.requestedLowCostCarriers,
-                    orderSynchronizationRequest.requestedLowCostCarriers);
+            return Objects.equals(this.id, orderSynchronizationRequest.id) && Objects.equals(this.sScope,
+                    orderSynchronizationRequest.sScope) && Objects.equals(this.rLCC,
+                    orderSynchronizationRequest.rLCC);
         } else {
             return false;
         }
     }
 
     public int hashCode() {
-        return Objects.hash(new Object[] { this.id, this.synchronizationScope, this.requestedLowCostCarriers });
+        return Objects.hash(new Object[] { this.id, this.sScope, this.rLCC });
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class OrderSynchronizationRequest {\n");
         sb.append("    id: ").append(this.toIndentedString(this.id)).append("\n");
-        sb.append("    synchronizationScope: ").append(this.toIndentedString(this.synchronizationScope)).append("\n");
-        sb.append("    requestedLowCostCarriers: ").append(this.toIndentedString(this.requestedLowCostCarriers))
+        sb.append("    sScope: ").append(this.toIndentedString(this.sScope)).append("\n");
+        sb.append("    rLCC: ").append(this.toIndentedString(this.rLCC))
                 .append("\n");
         sb.append("}");
         return sb.toString();
