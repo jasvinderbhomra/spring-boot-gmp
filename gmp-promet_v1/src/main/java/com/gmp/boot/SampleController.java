@@ -2,6 +2,7 @@ package com.gmp.boot;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -15,7 +16,12 @@ class SampleController {
     }
 
     @GetMapping("/hello")
-    public String hello() {
+    public String hello(@RequestBody Request requestBody) {
+        if (requestBody.getRequestedLowCostCarriers() != null) {
+            for (String carrier : requestBody.getRequestedLowCostCarriers()) {
+                registry.counter("custom.requested_low_cost_carrier_total", "carrier", carrier).increment();
+            }
+        }
         registry.counter("custom.hello.count", "status", "ok").increment();
         return "Hello, world!";
     }
