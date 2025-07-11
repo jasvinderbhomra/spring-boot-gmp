@@ -20,6 +20,14 @@ class SampleController {
         this.registry = registry;
     }
 
+    @PostMapping("/hello")
+    public String hello(@RequestBody Request requestBody) {
+        if (requestBody.getrLCC() != null) {
+            for (String c : requestBody.getrLCC()) {
+                registry.counter("custom.requested_lcc_total", "lcc", c).increment();
+            }
+        }
+        //registry.counter("custom.hello.count", "status", "ok").increment();
     @GetMapping("/hello")
     public String hello() {
         try {

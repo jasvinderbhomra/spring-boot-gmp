@@ -14,9 +14,10 @@ management:
   metrics:
     enable:
       all: false
-      custom.hello.count: true  # 👈 Enable your custom metric
-    tags:
-      status: ok                # 👈 Metric label (optional)
+      # custom.hello.count: true  # 👈 Enable your custom metric
+      custom.requested_lcc_total: true
+      # tags:
+      # status: ok                # 👈 Metric label (optional)
 
   stackdriver:
     metrics:
