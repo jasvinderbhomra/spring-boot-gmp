@@ -1,27 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true">
-    <property name="LOG_PATTERN"
+    <!-- MDC Pattern -->
+    <property name="MDC_PATTERN"
               value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - [requestId=%X{requestId}, userId=%X{userId}] %msg%n"/>
 
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- Default Pattern for non-application logs -->
+    <property name="DEFAULT_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+
+    <!-- Appender for application logs with MDC -->
+    <appender name="APP_LOG" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>NEUTRAL</onMismatch>
+        </filter>
         <encoder>
-            <pattern>${LOG_PATTERN}</pattern>
+            <pattern>${MDC_PATTERN}</pattern>
         </encoder>
     </appender>
 
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/app.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/app.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>7</maxHistory>
-        </rollingPolicy>
+    <!-- Appender for all other logs without MDC -->
+    <appender name="DEFAULT_LOG" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>${LOG_PATTERN}</pattern>
+            <pattern>${DEFAULT_PATTERN}</pattern>
         </encoder>
     </appender>
 
+    <!-- Your Application Logger (with MDC) -->
+    <logger name="com.gmp" level="INFO" additivity="false">
+        <appender-ref ref="APP_LOG"/>
+    </logger>
+
+    <!-- Root Logger (no MDC) -->
     <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
+        <appender-ref ref="DEFAULT_LOG"/>
     </root>
 </configuration>
