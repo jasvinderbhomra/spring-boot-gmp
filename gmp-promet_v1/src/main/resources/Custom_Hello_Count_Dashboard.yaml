@@ -1,0 +1,39 @@
+displayName: "Custom Hello Count Dashboard 1"
+gridLayout:
+  columns: 1
+  widgets:
+    - title: "Hello Count by Status"
+      xyChart:
+        dataSets:
+          - timeSeriesQuery:
+              timeSeriesQueryLanguage: |
+                fetch prometheus_target
+                | metric 'prometheus.googleapis.com/custom/hello/count'
+                | group_by 1m, [row_count: row_count()]
+                | every 1m
+                | group_by [metric.status], [row_count: row_count()]
+            plotType: STACKED_BAR
+            targetAxis: Y1
+
+          - timeSeriesQuery:
+              timeSeriesFilter:
+                filter: metric.type="prometheus.googleapis.com/custom/hello/count" resource.type="prometheus_target"
+                aggregation:
+                  perSeriesAligner: ALIGN_MEAN
+                  crossSeriesReducer: REDUCE_COUNT
+                  groupByFields:
+                    - metric.label."status"
+                  alignmentPeriod: 60s
+            plotType: STACKED_BAR
+            targetAxis: Y1
+            minAlignmentPeriod: 60s
+
+        chartOptions:
+          mode: COLOR
+          displayHorizontal: false
+
+        thresholds: [ ]
+
+        yAxis:
+          scale: LINEAR
+
